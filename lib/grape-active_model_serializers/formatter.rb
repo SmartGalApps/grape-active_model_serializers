@@ -22,7 +22,7 @@ module Grape
           options[:scope] = endpoint unless options.key?(:scope)
           # ensure we have an root to fallback on
           options[:resource_name] = default_root(endpoint) if resource.respond_to?(:to_ary)
-          serializer.new(resource, options.merge(other_options(env)))
+          ActiveModel::SerializableResource.new(resource, options.merge(other_options(env)))
         end
 
         def other_options(env)
